@@ -45,7 +45,7 @@ const EditProfile = ({
       instagram: loading || !profile.instagram ? '' : profile.instagram,
       likedin: loading || !profile.likedin ? '' : profile.likedin
     });
-  }, [loading]);
+  }, [loading, getCurrentProfile]);
 
   const {
     company,

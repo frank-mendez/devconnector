@@ -7,7 +7,8 @@ import {
   CLEAR_PROFILE,
   ACCOUNT_DELETED,
   GET_PROFILES,
-  GET_REPOS
+  GET_REPOS,
+  CLEAR_REPOS
 } from './types';
 
 // Get current users profiler
@@ -52,6 +53,7 @@ export const getProfileById = userId => async dispatch => {
       type: GET_PROFILE,
       payload: res.data
     });
+    return res.data;
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
@@ -62,7 +64,6 @@ export const getProfileById = userId => async dispatch => {
 
 // Get Github repos
 export const getGithubRepos = username => async dispatch => {
-  //dispatch({ type: CLEAR_PROFILE });
   try {
     const res = await axios.get(`/api/profile/github/${username}`);
     dispatch({

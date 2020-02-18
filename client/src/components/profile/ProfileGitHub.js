@@ -12,7 +12,7 @@ const ProfileGitHub = ({ username, getGithubRepos, repos }) => {
     <div className='profile-github'>
       <h2 className='text-primary my-1'>Github Repos</h2>
       {repos === null ? (
-        <Spinner />
+        <h4>No Repos added</h4>
       ) : (
         repos.map(repo => (
           <div key={repo._id} className='repo bg-white p-1 my-1'>

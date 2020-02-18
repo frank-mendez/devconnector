@@ -2,23 +2,26 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getGithubRepos } from '../../actions/profile';
-import Spinner from '../layout/Spinner';
 
 const ProfileGitHub = ({ username, getGithubRepos, repos }) => {
   useEffect(() => {
     getGithubRepos(username);
-  }, [getGithubRepos]);
+  }, [getGithubRepos, username]);
   return (
     <div className='profile-github'>
       <h2 className='text-primary my-1'>Github Repos</h2>
-      {repos === null ? (
-        <h4>No Repos added</h4>
+      {repos.length < 1 ? (
+        <h2>No Github profile found or No Repository Found</h2>
       ) : (
         repos.map(repo => (
           <div key={repo._id} className='repo bg-white p-1 my-1'>
             <div>
               <h4>
-                <a href={repo.html_url} target='_blank' rel='noopener norefer'>
+                <a
+                  href={repo.html_url}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
                   {repo.name}
                 </a>
               </h4>

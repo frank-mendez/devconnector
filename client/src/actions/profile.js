@@ -8,7 +8,7 @@ import {
   ACCOUNT_DELETED,
   GET_PROFILES,
   GET_REPOS,
-  CLEAR_REPOS
+  REPO_ERROR
 } from './types';
 
 // Get current users profiler
@@ -53,8 +53,8 @@ export const getProfileById = userId => async dispatch => {
       type: GET_PROFILE,
       payload: res.data
     });
-    return res.data;
   } catch (err) {
+    window.alert('dispatch profile error');
     dispatch({
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
@@ -72,9 +72,13 @@ export const getGithubRepos = username => async dispatch => {
     });
   } catch (err) {
     dispatch({
-      type: PROFILE_ERROR,
+      type: REPO_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
+    // dispatch({
+    //   type: PROFILE_ERROR,
+    //   payload: { msg: err.response.statusText, status: err.response.status }
+    // });
   }
 };
 
